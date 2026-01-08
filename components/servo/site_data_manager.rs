@@ -188,6 +188,13 @@ impl SiteDataManager {
             self.private_resource_threads.clear_cookies_for_sites(sites);
         }
 
+        if storage_types.contains(StorageType::Local) {
+            self.public_storage_threads
+                .clear_webstorage_for_sites(WebStorageType::Local, sites);
+            self.private_storage_threads
+                .clear_webstorage_for_sites(WebStorageType::Local, sites);
+        }
+
         if storage_types.contains(StorageType::Session) {
             self.public_storage_threads
                 .clear_webstorage_for_sites(WebStorageType::Session, sites);
